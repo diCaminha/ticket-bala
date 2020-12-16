@@ -14,5 +14,19 @@ spec:
     spec:
       containers:
         - name: auth
-        image: dcaminha/tic-auth
-        
+          image: dcaminha/tic-auth
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-Service
+spec:
+  selector:
+    app: auth
+  ports:
+    - name: auth
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
