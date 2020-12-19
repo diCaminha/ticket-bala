@@ -13,11 +13,9 @@ export const errorHandler = (
       return { message: error.msg, field: error.param };
     });
 
-    return res.status(400).send({
-      errors: formattedErrors,
-    });
+    return res.status(400).send({ errors: formattedErrors });
   } else if (err instanceof DatabaseConnectionError) {
-    return res.status(500).send({errors: [{message: 'internal error'}]})
+    return res.status(500).send({ errors: [{ message: err.reason }] });
   }
 
   res.status(400).send({
